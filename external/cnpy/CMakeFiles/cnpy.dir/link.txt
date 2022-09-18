@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc ../../lib/libcnpy.a CMakeFiles/cnpy.dir/cnpy.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib ../../lib/libcnpy.a

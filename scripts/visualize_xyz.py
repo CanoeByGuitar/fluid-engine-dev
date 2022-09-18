@@ -1,5 +1,5 @@
-#!/usr/bin/env python
 
+# python visualize_xyz.py /Users/wangchenhui/github/fluid-engine-dev/bin/hybrid_liquid_sim_output
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import sys
 import utils
+
+
 
 def render_frame(num, data, line):
     xyz_file = open(files[num])

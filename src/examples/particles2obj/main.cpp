@@ -92,8 +92,8 @@ void particlesToObj(const Array1<Vector3D>& positions, const Size3& resolution,
 
 int main(int argc, char* argv[]) {
     bool showHelp = false;
-    std::string inputFilename;
-    std::string outputFilename;
+    std::string inputFilename = "./hybrid_liquid_sim_output/frame_000000.xyz";
+    std::string outputFilename = "./result.obj";
     Size3 resolution(100, 100, 100);
     Vector3D gridSpacing(0.01, 0.01, 0.01);
     Vector3D origin;

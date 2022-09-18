@@ -1,7 +1,10 @@
 # Usage: python visualize_xyz_mayavi.py [INPUT DIR] [TMP OUTPUT DIR]
 # Required package: mayavi, install with pip install mayavi
 # the png files can be combined with ImageMagick, such as
-# convert -delay 30 /tmp/simsph/*.png /tmp/simsph.gif
+# convert -delay 2 ./bin/out/*.png ./bin/flip.gif
+
+#  python visualize_xyz_mayavi.py /Users/wangchenhui/github/fluid-engine-dev/bin/hybrid_liquid_sim_output /Users/wangchenhui/github/fluid-engine-dev/bin/out
+
 import os
 import sys
 import numpy as np
@@ -41,5 +44,5 @@ for i,f in enumerate(files):
     mlab.plot3d([CUBE_MAX,CUBE_MAX],[CUBE_MAX/2,CUBE_MAX/2],[0.0,CUBE_MAX], color=(0,0,0), tube_radius=None, figure=fig)
 
     mlab.view(azimuth=50, elevation=80, focalpoint=[1, 0.2, 1.1], distance=8.0, figure=fig)
-    mlab.savefig(filename=outpath + '/out-%02d.png' % i)
+    mlab.savefig(filename=outpath + '/out-%06d.png' % i)
     mlab.clf()

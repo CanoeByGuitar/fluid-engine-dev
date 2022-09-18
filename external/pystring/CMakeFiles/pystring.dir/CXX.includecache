@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/wangchenhui/github/fluid-engine-dev/external/pystring/pystring.cpp
+pystring.h
+/Users/wangchenhui/github/fluid-engine-dev/external/pystring/pystring.h
+algorithm
+-
+cctype
+-
+cstring
+-
+iostream
+-
+sstream
+-
+
+/Users/wangchenhui/github/fluid-engine-dev/external/pystring/pystring.h
+string
+-
+vector
+-
+

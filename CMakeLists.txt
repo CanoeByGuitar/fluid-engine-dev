@@ -9,6 +9,8 @@
 # CMake version
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
+set(CMAKE_CXX_STANDARD 17)
+
 # Include cmake modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
@@ -100,8 +102,9 @@ add_subdirectory(src/examples/particles2xml)
 add_subdirectory(src/examples/smoke_sim)
 add_subdirectory(src/examples/sph_sim)
 add_subdirectory(src/examples/playground)
-
 add_subdirectory(external/pybind11)
+
+add_subdirectory(src/examples/draw_utils)
 if (BUILD_FROM_PIP)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEFAULT_CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 endif()
