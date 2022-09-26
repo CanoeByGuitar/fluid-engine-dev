@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-#define APP_NAME "level_set_liquid_sim"
+#define APP_NAME "level_set_liquid_sim_2"
 
 using namespace jet;
 
@@ -82,7 +82,6 @@ void runExample1(const std::string& rootDir, size_t resX, int numberOfFrames,
                       .withResolution({resX, 2 * resX, resX})
                       .withDomainSizeX(1.0)
                       .makeShared();
-
     auto grids = solver->gridSystemData();
     BoundingBox3D domain = grids->boundingBox();
 
@@ -92,13 +91,19 @@ void runExample1(const std::string& rootDir, size_t resX, int numberOfFrames,
                      .withPoint({0, 0.25 * domain.height(), 0})
                      .makeShared();
 
-    auto sphere = Sphere3::builder()
-                      .withCenter(domain.midPoint())
+    auto sphere1 = Sphere3::builder()
+                      .withCenter({
+                           domain.midPoint().x,
+                           domain.midPoint().y + 0.3,
+                           domain.midPoint().z
+                       })
                       .withRadius(0.15 * domain.width())
                       .makeShared();
 
+
+
     auto surfaceSet = ImplicitSurfaceSet3::builder()
-                          .withExplicitSurfaces({plane, sphere})
+                          .withExplicitSurfaces({plane, sphere1})
                           .makeShared();
 
     auto emitter =
@@ -277,7 +282,7 @@ int main(int argc, char* argv[]) {
     size_t resX = 50;
     int numberOfFrames = 100;
     double fps = 60.0;
-    int exampleNum = 1;
+    int exampleNum = 2;
     std::string logFilename = APP_NAME ".log";
     std::string outputDir = APP_NAME "_output";
 

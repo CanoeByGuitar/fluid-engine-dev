@@ -33,8 +33,8 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 // settings
-const unsigned int SCR_WIDTH = 300;
-const unsigned int SCR_HEIGHT = 300;
+const unsigned int SCR_WIDTH = 800;
+const unsigned int SCR_HEIGHT = 600;
 
 
 
@@ -161,7 +161,7 @@ int main() {
 
         // render
         // ------
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.062f, 0.176f, 0.247f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
         // render container

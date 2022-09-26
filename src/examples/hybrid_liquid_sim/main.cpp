@@ -491,7 +491,7 @@ void runExample6(const std::string& rootDir, size_t resolutionX,
 int main(int argc, char* argv[]) {
     bool showHelp = false;
     size_t resolutionX = 50;
-    int numberOfFrames = 50;
+    int numberOfFrames = 100;
     double fps = 60.0;
     int exampleNum = 1;
     std::string logFilename = APP_NAME ".log";
