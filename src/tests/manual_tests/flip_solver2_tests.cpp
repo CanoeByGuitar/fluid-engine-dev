@@ -126,7 +126,7 @@ JET_BEGIN_TEST_F(FlipSolver2, DamBreaking) {
 
     for (Frame frame; frame.index < 240; ++frame) {
         solver->update(frame);
-
+        std::cout << "frame_" << frame.index << std::endl;
         saveParticleDataXy(solver->particleSystemData(), frame.index);
     }
 }

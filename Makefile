@@ -474,6 +474,19 @@ draw_utils/fast:
 .PHONY : draw_utils/fast
 
 #=============================================================================
+# Target rules for targets named grid_method_2D
+
+# Build rule for target.
+grid_method_2D: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 grid_method_2D
+.PHONY : grid_method_2D
+
+# fast build rule for target.
+grid_method_2D/fast:
+	$(MAKE) $(MAKESILENT) -f src/examples/grid_method_2D/CMakeFiles/grid_method_2D.dir/build.make src/examples/grid_method_2D/CMakeFiles/grid_method_2D.dir/build
+.PHONY : grid_method_2D/fast
+
+#=============================================================================
 # Target rules for targets named pyjet
 
 # Build rule for target.
@@ -505,6 +518,7 @@ help:
 	@echo "... draw_utils"
 	@echo "... gmock"
 	@echo "... gmock_main"
+	@echo "... grid_method_2D"
 	@echo "... gtest"
 	@echo "... gtest_main"
 	@echo "... hello_fluid_sim"

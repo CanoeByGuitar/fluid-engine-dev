@@ -345,7 +345,7 @@ def render_grid2(filename, frame_rate=60):
         grid_data = np.load(seq[0])
         grid_data = np.flipud(grid_data)
         fig, ax = plt.subplots()
-        im = ax.imshow(grid_data, cmap=plt.cm.gray, interpolation='nearest')
+        im = ax.imshow(grid_data, cmap="Blues", interpolation='nearest')
         if ISO_TAG in parse_tags(filename):
             plt.contour(grid_data)
 

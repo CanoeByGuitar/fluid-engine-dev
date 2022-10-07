@@ -4,6 +4,8 @@
 // personal capacity and am not conveying any rights to any intellectual
 // property of any third parties.
 
+
+// python ./scripts/render_manual_tests_output.py
 #include <manual_tests.h>
 #include <jet/jet.h>
 #include <gtest/gtest.h>

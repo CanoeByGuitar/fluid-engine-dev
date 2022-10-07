@@ -105,6 +105,7 @@ add_subdirectory(src/examples/playground)
 add_subdirectory(external/pybind11)
 
 add_subdirectory(src/examples/draw_utils)
+add_subdirectory(src/examples/grid_method_2D)
 if (BUILD_FROM_PIP)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${DEFAULT_CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 endif()

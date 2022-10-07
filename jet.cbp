@@ -5,7 +5,7 @@
 		<Option title="jet"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="clang"/>
-		<Option virtualFolders="CMake Files\;CMake Files\external\;CMake Files\external\googlebenchmark\;CMake Files\external\googlebenchmark\cmake\;CMake Files\external\googlebenchmark\src\;CMake Files\external\googletest\;CMake Files\external\googletest\googlemock\;CMake Files\external\googletest\googlemock\cmake\;CMake Files\external\googletest\googletest\;CMake Files\external\googletest\googletest\cmake\;CMake Files\external\cnpy\;CMake Files\external\pystring\;CMake Files\external\pybind11\;CMake Files\external\pybind11\tools\;CMake Files\cmake\;CMake Files\src\;CMake Files\src\jet\;CMake Files\src\tests\;CMake Files\src\tests\manual_tests\;CMake Files\src\tests\mem_perf_tests\;CMake Files\src\tests\time_perf_tests\;CMake Files\src\tests\unit_tests\;CMake Files\src\examples\;CMake Files\src\examples\hello_fluid_sim\;CMake Files\src\examples\hybrid_liquid_sim\;CMake Files\src\examples\level_set_liquid_sim\;CMake Files\src\examples\obj2sdf\;CMake Files\src\examples\particles2obj\;CMake Files\src\examples\particles2xml\;CMake Files\src\examples\smoke_sim\;CMake Files\src\examples\sph_sim\;CMake Files\src\examples\playground\;CMake Files\src\examples\draw_utils\;CMake Files\src\python\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\external\;CMake Files\external\googlebenchmark\;CMake Files\external\googlebenchmark\cmake\;CMake Files\external\googlebenchmark\src\;CMake Files\external\googletest\;CMake Files\external\googletest\googlemock\;CMake Files\external\googletest\googlemock\cmake\;CMake Files\external\googletest\googletest\;CMake Files\external\googletest\googletest\cmake\;CMake Files\external\cnpy\;CMake Files\external\pystring\;CMake Files\external\pybind11\;CMake Files\external\pybind11\tools\;CMake Files\cmake\;CMake Files\src\;CMake Files\src\jet\;CMake Files\src\tests\;CMake Files\src\tests\manual_tests\;CMake Files\src\tests\mem_perf_tests\;CMake Files\src\tests\time_perf_tests\;CMake Files\src\tests\unit_tests\;CMake Files\src\examples\;CMake Files\src\examples\hello_fluid_sim\;CMake Files\src\examples\hybrid_liquid_sim\;CMake Files\src\examples\level_set_liquid_sim\;CMake Files\src\examples\obj2sdf\;CMake Files\src\examples\particles2obj\;CMake Files\src\examples\particles2xml\;CMake Files\src\examples\smoke_sim\;CMake Files\src\examples\sph_sim\;CMake Files\src\examples\playground\;CMake Files\src\examples\draw_utils\;CMake Files\src\examples\grid_method_2D\;CMake Files\src\python\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/Users/wangchenhui/github/fluid-engine-dev"/>
@@ -1513,6 +1513,70 @@
 					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/draw_utils/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="grid_method_2D">
+				<Option output="/Users/wangchenhui/github/fluid-engine-dev/bin/grid_method_2D" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/wangchenhui/github/fluid-engine-dev/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DRESOURCES_DIR=&quot;/Users/wangchenhui/github/fluid-engine-dev/resources&quot;"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DJET_TASKING_CPP11THREADS"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/include"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external/pybind11/include"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external/Clara/include"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external/tinyobj"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/src/examples"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/src/jet/../../include/jet"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 grid_method_2D"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="grid_method_2D/fast">
+				<Option output="/Users/wangchenhui/github/fluid-engine-dev/bin/grid_method_2D" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/wangchenhui/github/fluid-engine-dev/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DRESOURCES_DIR=&quot;/Users/wangchenhui/github/fluid-engine-dev/resources&quot;"/>
+					<Add option="-DDEBUG"/>
+					<Add option="-DJET_TASKING_CPP11THREADS"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/include"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external/pybind11/include"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external/Clara/include"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/external/tinyobj"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/src/examples"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D"/>
+					<Add directory="/Users/wangchenhui/github/fluid-engine-dev/src/jet/../../include/jet"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 grid_method_2D/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="pyjet">
 				<Option output="/Users/wangchenhui/github/fluid-engine-dev/lib/pyjet.cpython-38-darwin.so" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/Users/wangchenhui/github/fluid-engine-dev/src/python"/>
@@ -1716,6 +1780,9 @@
 		</Unit>
 		<Unit filename="/Users/wangchenhui/github/fluid-engine-dev/src/examples/draw_utils/stb_image_write.h">
 			<Option target="draw_utils"/>
+		</Unit>
+		<Unit filename="/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/main.cpp">
+			<Option target="grid_method_2D"/>
 		</Unit>
 		<Unit filename="/Users/wangchenhui/github/fluid-engine-dev/src/examples/hello_fluid_sim/main.cpp">
 			<Option target="hello_fluid_sim"/>
@@ -3627,6 +3694,9 @@
 		</Unit>
 		<Unit filename="/Users/wangchenhui/github/fluid-engine-dev/src/examples/draw_utils/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\src\examples\draw_utils\"/>
+		</Unit>
+		<Unit filename="/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\examples\grid_method_2D\"/>
 		</Unit>
 		<Unit filename="/Users/wangchenhui/github/fluid-engine-dev/src/python/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\src\python\"/>

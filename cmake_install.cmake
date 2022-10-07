@@ -58,6 +58,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Users/wangchenhui/github/fluid-engine-dev/src/examples/playground/cmake_install.cmake")
   include("/Users/wangchenhui/github/fluid-engine-dev/external/pybind11/cmake_install.cmake")
   include("/Users/wangchenhui/github/fluid-engine-dev/src/examples/draw_utils/cmake_install.cmake")
+  include("/Users/wangchenhui/github/fluid-engine-dev/src/examples/grid_method_2D/cmake_install.cmake")
   include("/Users/wangchenhui/github/fluid-engine-dev/src/python/cmake_install.cmake")
 
 endif()

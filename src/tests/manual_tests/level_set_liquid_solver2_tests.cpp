@@ -3,6 +3,8 @@
 // I am making my contributions/submissions to this project solely in my
 // personal capacity and am not conveying any rights to any intellectual
 // property of any third parties.
+//
+
 
 #include <manual_tests.h>
 
@@ -17,11 +19,77 @@
 #include <jet/surface_to_implicit2.h>
 #include <jet/volume_grid_emitter2.h>
 
+#include <array3.h>
 #include <vector>
-
+// ./manual_tests --gtest_filter="LevelSetLiquidSolver2Tests.DropHighRes"
 using namespace jet;
 
 JET_TESTS(LevelSetLiquidSolver2);
+
+JET_BEGIN_TEST_F(LevelSetLiquidSolver2, Damp) {
+    LevelSetLiquidSolver2 solver;
+
+    auto data = solver.gridSystemData();
+    double dx = 1.0 / 128.0;
+    data->resize(Size2(128, 128), Vector2D(dx, dx), Vector2D());
+
+    // Source setting
+//    BoundingBox2D domain = data->boundingBox();
+    ImplicitSurfaceSet2 surfaceSet;
+    surfaceSet.addExplicitSurface(
+        std::make_shared<Box2>(Vector2D(0.0, 0.0), Vector2D(0.2, 0.8)));
+
+    surfaceSet.addExplicitSurface(
+        std::make_shared<Box2>(Vector2D(0.8, 0), Vector2D(1, 0.8)));
+
+    auto sdf = solver.signedDistanceField();
+    sdf->fill([&](const Vector2D& x) {
+        return surfaceSet.signedDistance(x);
+    });
+
+    Array2<double> output(128, 128);
+    Array2<double> p_output(128,128);
+    Array3<double>  vel_output(128,128,2);
+    output.forEachIndex([&](size_t i, size_t j) {
+        output(i, j) = 1.0 - smearedHeavisideSdf((*sdf)(i, j) / dx);
+    });
+
+    auto velField = data->velocity();
+    vel_output.forEachIndex([&](size_t i, size_t j, size_t k) {
+        vel_output(i, j, 0) = velField->u(i, j);
+        vel_output(i, j, 1) = velField->v(i, j);
+    });
+    char vel_filename[256];
+    snprintf(vel_filename, sizeof(vel_filename), "vel_data.#grid2,0000.npy");
+    saveData(vel_output.constAccessor(), vel_filename);
+
+    char filename[256];
+    snprintf(filename, sizeof(filename), "data.#grid2,0000.npy");
+    saveData(output.constAccessor(), filename);
+
+    for (Frame frame(0, 1.0 / 60.0); frame.index < 200; frame.advance()) {
+        solver.update(frame);
+        std::cout << "frame_" << frame.index << std::endl;
+        output.forEachIndex([&](size_t i, size_t j) {
+            output(i, j) = 1.0 - smearedHeavisideSdf((*sdf)(i, j) / dx);
+        });
+        snprintf(
+            filename,
+            sizeof(filename),
+            "data.#grid2,%04d.npy",
+            frame.index);
+        saveData(output.constAccessor(), filename);
+
+        velField = data->velocity();
+        vel_output.forEachIndex([&](size_t i, size_t j, size_t k) {
+            vel_output(i, j, 0) = velField->u(i, j);
+            vel_output(i, j, 1) = velField->v(i, j);
+        });
+        snprintf(vel_filename, sizeof(vel_filename), "vel_data.#grid2,%04d.npy",frame.index);
+        saveData(vel_output.constAccessor(), vel_filename);
+    }
+}
+JET_END_TEST_F
 
 JET_BEGIN_TEST_F(LevelSetLiquidSolver2, Drop) {
     LevelSetLiquidSolver2 solver;
@@ -52,9 +120,9 @@ JET_BEGIN_TEST_F(LevelSetLiquidSolver2, Drop) {
     snprintf(filename, sizeof(filename), "data.#grid2,0000.npy");
     saveData(output.constAccessor(), filename);
 
-    for (Frame frame(0, 1.0 / 60.0); frame.index < 120; frame.advance()) {
+    for (Frame frame(0, 1.0 / 60.0); frame.index < 200; frame.advance()) {
         solver.update(frame);
-
+        std::cout << "frame_" << frame.index << std::endl;
         output.forEachIndex([&](size_t i, size_t j) {
             output(i, j) = 1.0 - smearedHeavisideSdf((*sdf)(i, j) / dx);
         });
@@ -161,7 +229,7 @@ JET_BEGIN_TEST_F(LevelSetLiquidSolver2, DropHighRes) {
 
     auto data = solver.gridSystemData();
     double dx = 1.0 / 128.0;
-    data->resize(Size2(128, 256), Vector2D(dx, dx), Vector2D());
+    data->resize(Size2(64, 128), Vector2D(dx, dx), Vector2D());
 
     // Source setting
     BoundingBox2D domain = data->boundingBox();
@@ -176,7 +244,7 @@ JET_BEGIN_TEST_F(LevelSetLiquidSolver2, DropHighRes) {
         return surfaceSet.signedDistance(x);
     });
 
-    Array2<double> output(128, 256);
+    Array2<double> output(64, 128);
     output.forEachIndex([&](size_t i, size_t j) {
         output(i, j) = 1.0 - smearedHeavisideSdf((*sdf)(i, j) / dx);
     });
@@ -185,9 +253,9 @@ JET_BEGIN_TEST_F(LevelSetLiquidSolver2, DropHighRes) {
     snprintf(filename, sizeof(filename), "data.#grid2,0000.npy");
     saveData(output.constAccessor(), filename);
 
-    for (Frame frame(0, 1.0 / 60.0); frame.index < 120; frame.advance()) {
+    for (Frame frame(0, 1.0 / 60.0); frame.index < 50; frame.advance()) {
         solver.update(frame);
-
+        std::cout << frame.index << std::endl;
         output.forEachIndex([&](size_t i, size_t j) {
             output(i, j) = 1.0 - smearedHeavisideSdf((*sdf)(i, j) / dx);
         });
@@ -237,6 +305,7 @@ JET_BEGIN_TEST_F(LevelSetLiquidSolver2, DropWithCollider) {
 
     for (Frame frame(0, 1.0 / 60.0); frame.index < 240; frame.advance()) {
         double t = frame.timeInSeconds();
+        std::cout << "frame_" << frame.index << std::endl;
         sphere->center = Vector2D(domain.midPoint().x, 0.75 - std::cos(t));
         collider->linearVelocity = Vector2D(0, std::sin(t));
 
